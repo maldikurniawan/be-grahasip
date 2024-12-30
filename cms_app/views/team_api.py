@@ -1,4 +1,4 @@
-from rest_framework import status, generics, permissions
+from rest_framework import status, generics
 from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.filters import SearchFilter, OrderingFilter
@@ -6,15 +6,15 @@ from django_filters.rest_framework import DjangoFilterBackend
 from cms_app.models import Team
 from cms_app.paginations import CustomPagination
 from cms_app.serializers import TeamSerializer
-from backend_gsip.permissions import PermissionMixin
+# from backend_gsip.permissions import PermissionMixin
 
 
-class TeamListApi(PermissionMixin, generics.ListCreateAPIView):
+class TeamListApi(generics.ListCreateAPIView):
     """
     Handles listing and creation of Teams.
     """
 
-    permission_classes = (permissions.IsAuthenticated,)
+    # permission_classes = (permissions.IsAuthenticated,)
     parser_classes = (MultiPartParser, FormParser)
     queryset = Team.objects.all()
     serializer_class = TeamSerializer
@@ -51,12 +51,12 @@ class TeamListApi(PermissionMixin, generics.ListCreateAPIView):
         return Response(response, status=status.HTTP_201_CREATED)
 
 
-class TeamAPIView(PermissionMixin, generics.RetrieveUpdateDestroyAPIView):
+class TeamAPIView(generics.RetrieveUpdateDestroyAPIView):
     """
     Handles retrieval, update, and deletion of an Team.
     """
 
-    permission_classes = (permissions.IsAuthenticated,)
+    # permission_classes = (permissions.IsAuthenticated,)
     queryset = Team.objects.all()
     serializer_class = TeamSerializer
     pagination_class = CustomPagination
