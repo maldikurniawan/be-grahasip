@@ -68,6 +68,15 @@ class Article(models.Model):
     updated_at = models.DateTimeField(auto_now=True, null=True)
 
 
+class Team(models.Model):
+    # Inisial Tabel
+    name = models.CharField(max_length=255)
+    position = models.CharField(max_length=255)
+    image = models.ImageField(upload_to=upload_articles, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True)
+
+
 class Visitor(models.Model):
     ipaddressdetail = models.ForeignKey(
         IPAddressDetail,

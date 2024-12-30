@@ -33,10 +33,17 @@ class ArticleListApi(PermissionMixin, generics.ListCreateAPIView):
         return queryset
 
     def create(self, request, *args, **kwargs):
-        """
-        Creates a new article.
-        """
-        serializer = self.get_serializer(data=request.data)
+        # Convert request.data to mutable to avoid QueryDict immutability error
+        data = request.data.copy()
+
+        # Add the current user as the author
+        data["author"] = request.user.id
+
+        # Check if the image is null or empty and handle accordingly
+        if not data.get("image"):
+            data.pop("image", None)  # Remove the image field if it's not provided
+
+        serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         response = {
@@ -60,9 +67,12 @@ class ArticleAPIView(PermissionMixin, generics.RetrieveUpdateDestroyAPIView):
 
     def update(self, request, *args, **kwargs):
         """
-        Updates an existing article.
+        Updates an existing article, ensuring the author remains the same.
         """
         instance = self.get_object()
+        # Ensure the author does not change
+        if "author" in request.data:
+            request.data.pop("author")
         serializer = self.get_serializer(instance, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)

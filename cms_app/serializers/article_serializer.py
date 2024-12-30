@@ -9,14 +9,7 @@ class ArticleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Article
-        fields = [
-            "id",
-            "title",
-            "image",
-            "content",
-            "slug",
-            "author",
-            "status",
-            "created_at",
-            "updated_at",
-        ]
+        fields = '__all__'
+        extra_kwargs = {
+            'image': {'required': False},
+        }
