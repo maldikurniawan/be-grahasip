@@ -8,6 +8,11 @@ def upload_articles(instance, filename):
     name = "{:%Y%m%d_%H%M%S}_{}".format(datetime.now(), instance.slug)
     return "articles/{}.{}".format(name, ext)
 
+def upload_teams(instance, filename):
+    ext = filename.split(".")[-1]
+    name = "{:%Y%m%d_%H%M%S}_{}".format(datetime.now(), instance.name)
+    return "teams/{}.{}".format(name, ext)
+
 
 def upload_file(instance, filename):
     ext = filename.split(".")[-1]
@@ -72,7 +77,7 @@ class Team(models.Model):
     # Inisial Tabel
     name = models.CharField(max_length=255)
     position = models.CharField(max_length=255)
-    image = models.ImageField(upload_to=upload_articles, null=True, blank=True)
+    image = models.ImageField(upload_to=upload_teams, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, null=True)
 

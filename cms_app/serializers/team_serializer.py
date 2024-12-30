@@ -6,3 +6,6 @@ class TeamSerializer(serializers.ModelSerializer):
     class Meta:
         model = Team
         fields = '__all__'
+        extra_kwargs = {
+            'image': {'required': False},
+        }

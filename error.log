@@ -322,3 +322,117 @@ Traceback (most recent call last):
     raise AttributeError("This QueryDict instance is immutable")
 AttributeError: This QueryDict instance is immutable
 ERROR 2024-12-27 14:58:41,161 basehttp "POST /cms/article/ HTTP/1.1" 500 110493
+ERROR 2024-12-30 14:01:23,317 log Internal Server Error: /cms/team/1/
+Traceback (most recent call last):
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\rest_framework\generics.py", line 289, in put
+    return self.update(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Project QNN\backend_gsip\cms_app\views\team_api.py", line 69, in update
+    self.perform_update(serializer)
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\rest_framework\mixins.py", line 78, in perform_update
+    serializer.save()
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\rest_framework\serializers.py", line 203, in save
+    self.instance = self.update(self.instance, validated_data)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\rest_framework\serializers.py", line 1033, in update
+    instance.save()
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\django\db\models\base.py", line 892, in save
+    self.save_base(
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\django\db\models\base.py", line 998, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\django\db\models\base.py", line 1125, in _save_table
+    (getattr(self, f.attname) if raw else f.pre_save(self, False)),
+                                          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\django\db\models\fields\files.py", line 338, in pre_save
+    file.save(file.name, file.file, save=False)
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\django\db\models\fields\files.py", line 98, in save
+    name = self.field.generate_filename(self.instance, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\django\db\models\fields\files.py", line 353, in generate_filename
+    filename = self.upload_to(instance, filename)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Project QNN\backend_gsip\cms_app\models.py", line 13, in upload_teams
+    name = "{:%Y%m%d_%H%M%S}_{}".format(datetime.now(), instance.slug)
+                                                        ^^^^^^^^^^^^^
+AttributeError: 'Team' object has no attribute 'slug'
+ERROR 2024-12-30 14:01:23,333 basehttp "PUT /cms/team/1/ HTTP/1.1" 500 153691
+ERROR 2024-12-30 14:01:36,017 log Internal Server Error: /cms/team/1/
+Traceback (most recent call last):
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\rest_framework\generics.py", line 289, in put
+    return self.update(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Project QNN\backend_gsip\cms_app\views\team_api.py", line 69, in update
+    self.perform_update(serializer)
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\rest_framework\mixins.py", line 78, in perform_update
+    serializer.save()
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\rest_framework\serializers.py", line 203, in save
+    self.instance = self.update(self.instance, validated_data)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\rest_framework\serializers.py", line 1033, in update
+    instance.save()
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\django\db\models\base.py", line 892, in save
+    self.save_base(
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\django\db\models\base.py", line 998, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\django\db\models\base.py", line 1125, in _save_table
+    (getattr(self, f.attname) if raw else f.pre_save(self, False)),
+                                          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\django\db\models\fields\files.py", line 338, in pre_save
+    file.save(file.name, file.file, save=False)
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\django\db\models\fields\files.py", line 98, in save
+    name = self.field.generate_filename(self.instance, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Project QNN\backend_gsip\env\Lib\site-packages\django\db\models\fields\files.py", line 353, in generate_filename
+    filename = self.upload_to(instance, filename)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Project QNN\backend_gsip\cms_app\models.py", line 13, in upload_teams
+    name = "{:%Y%m%d_%H%M%S}_{}".format(datetime.now(), instance.slug)
+                                                        ^^^^^^^^^^^^^
+AttributeError: 'Team' object has no attribute 'slug'
+ERROR 2024-12-30 14:01:36,024 basehttp "PUT /cms/team/1/ HTTP/1.1" 500 153691
