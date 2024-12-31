@@ -1,4 +1,4 @@
-from rest_framework import status, generics
+from rest_framework import status, generics, permissions
 from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.filters import SearchFilter, OrderingFilter
@@ -6,15 +6,16 @@ from django_filters.rest_framework import DjangoFilterBackend
 from cms_app.models import Article
 from cms_app.paginations import CustomPagination
 from cms_app.serializers import ArticleSerializer
-# from backend_gsip.permissions import PermissionMixin
+from django.template.defaultfilters import slugify
+from backend_gsip.permissions import PermissionMixin
 
 
-class ArticleListApi(generics.ListCreateAPIView):
+class ArticleListApi(PermissionMixin, generics.ListCreateAPIView):
     """
     Handles listing and creation of articles.
     """
 
-    # permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.AllowAny,)
     parser_classes = (MultiPartParser, FormParser)
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
@@ -54,12 +55,12 @@ class ArticleListApi(generics.ListCreateAPIView):
         return Response(response, status=status.HTTP_201_CREATED)
 
 
-class ArticleAPIView(generics.RetrieveUpdateDestroyAPIView):
+class ArticleAPIView(PermissionMixin, generics.RetrieveUpdateDestroyAPIView):
     """
     Handles retrieval, update, and deletion of an article.
     """
 
-    # permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.AllowAny,)
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
     pagination_class = CustomPagination
@@ -94,3 +95,10 @@ class ArticleAPIView(generics.RetrieveUpdateDestroyAPIView):
             "message": "Article Deleted Successfully",
         }
         return Response(response, status=status.HTTP_200_OK)
+
+
+class SlugArticleApiView(generics.RetrieveAPIView):
+    permission_classes = (permissions.AllowAny,)
+    serializer_class = ArticleSerializer
+    queryset = Article.objects.all()
+    lookup_field = "slug"
